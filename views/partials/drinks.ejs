@@ -1,0 +1,21 @@
+<div class="fh5co-food-menu to-animate-2">
+    <h2 class="fh5co-drinks">Drinks</h2>
+    <ul>
+        <% list.forEach(function(icecek) { %>
+        <li>
+            <div class="fh5co-food-desc">
+                <figure>
+                    <img src="/images/<%= icecek.imageUrl %>" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
+                </figure>
+                <div>
+                    <h3><%= icecek.name %></h3>
+                    <p><%= icecek.description %></p>
+                </div>
+            </div>
+            <div class="fh5co-food-pricing">
+                $<%= icecek.price %>
+            </div>
+        </li>
+        <% }); %>
+    </ul>
+</div>

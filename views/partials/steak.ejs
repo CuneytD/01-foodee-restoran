@@ -1,0 +1,26 @@
+<div class="fh5co-food-menu to-animate-2">
+    <h2 class="fh5co-dishes">Steak</h2>
+    <ul>
+        <% list.forEach(function(anayemek) { %>
+                
+        <li>
+            <div class="fh5co-food-desc">
+                <figure>
+                    <img src="/images/<%= anayemek.imageUrl %>" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
+                </figure>
+                <div>
+                    <h3>
+                        <%= anayemek.name %>
+                    </h3>
+                    <p>
+                        <%= anayemek.description %>.
+                    </p>
+                </div>
+            </div>
+            <div class="fh5co-food-pricing">
+                $<%= anayemek.price %>
+            </div>
+        </li>
+        <% }); %>
+    </ul>
+</div>

@@ -1,15 +1,37 @@
-const mysql = require('mysql2')
-const config = require('../config');
+const sqlite3 = require('sqlite3').verbose();
+const Anayemek = require('../models/anayemek');
+const Icecek = require('../models/icecekler');
 
-let connection = mysql.createConnection(config.db);
+const db = new sqlite3.Database('menu.db');
 
-connection.connect(function(err) {
-    if(err)   { 
-        console.log(err);
-    }
-    
-    console.log("mysql bağlantısı yapıldı");
 
-})
+db.serialize(() => {
+  // anayemekler tablosunu oluştur
+  db.run(`
+    CREATE TABLE IF NOT EXISTS anayemekler (
+       id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT,
+      price REAL,
+      description TEXT,
+      imageUrl TEXT,
+      isActive INTEGER,
+      isHome INTEGER
+    )
+  `);
 
-module.exports = connection.promise();
+  // icecekler tablosunu oluştur
+  db.run(`
+    CREATE TABLE IF NOT EXISTS icecekler (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT,
+      price REAL,
+      description TEXT,
+      imageUrl TEXT,
+      isActive INTEGER,
+      isHome INTEGER
+    )
+  `);
+  });
+
+
+module.exports = db;
